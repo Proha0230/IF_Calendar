@@ -1,0 +1,19 @@
+
+@mixin buttonInLayout() {
+  width: 80px;
+  height: 40px;
+  border: solid 2px blanchedalmond;
+  border-radius: 20px;
+  background-color: cornsilk;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@mixin main_block_in_page($height: 95vh) {
+  width: 100vw;
+  height: $height;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  position: relative;
+}

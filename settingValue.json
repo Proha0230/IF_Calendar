@@ -1,0 +1,96 @@
+{
+  "config": {
+    "monthsValue": {
+      "1": {
+        "name": "January",
+        "day": "31",
+        "firstDay": "Monday"
+      },
+      "2": {
+        "name": "February",
+        "day" : "29",
+        "firstDay": "Thursday"
+      },
+      "3": {
+        "name": "March",
+        "day": "31",
+        "firstDay": "Friday"
+      },
+      "4": {
+        "name": "April",
+        "day": "30",
+        "firstDay": "Monday"
+      },
+      "5": {
+        "name": "May",
+        "day": "31",
+        "firstDay": "Wednesday"
+      },
+      "6": {
+        "name": "June",
+        "day": "30",
+        "firstDay": "Saturday"
+      },
+      "7": {
+        "name": "July",
+        "day": "31",
+        "firstDay": "Monday"
+      },
+      "8": {
+        "name": "August",
+        "day": "31",
+        "firstDay": "Thursday"
+      },
+      "9": {
+        "name": "September",
+        "day": "30",
+        "firstDay": "Sunday"
+      },
+      "10": {
+        "name": "October",
+        "day": "31",
+        "firstDay": "Tuesday"
+      },
+      "11": {
+        "name": "November",
+        "day": "30",
+        "firstDay": "Friday"
+      },
+      "12": {
+        "name": "December",
+        "day": "31",
+        "firstDay": "Sunday"
+      }
+    },
+    "dayWeak": {
+      "1": {
+        "name": "Monday",
+        "addDay": "0"
+      },
+      "2": {
+        "name": "Tuesday",
+        "addDay": "1"
+      },
+      "3": {
+        "name": "Wednesday",
+        "addDay": "2"
+      },
+      "4": {
+        "name": "Thursday",
+        "addDay": "3"
+      },
+      "5": {
+        "name": "Friday",
+        "addDay": "4"
+      },
+      "6": {
+        "name": "Saturday",
+        "addDay": "5"
+      },
+      "7": {
+        "name": "Sunday",
+        "addDay": "6"
+      }
+    }
+  }
+}
