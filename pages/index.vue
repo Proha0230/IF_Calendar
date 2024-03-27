@@ -1,10 +1,10 @@
 <template>
   <div class="year_main_block">
     <div class="year_main_block__name_app">
-      <p>Calendar 2024 Year</p>
+      <p>Calendar {{state.year}} Year</p>
     </div>
     <div class="year_main_block__months_block">
-      <div v-for="item in monthsValue" :key="item" class="year_main_block__months_block--content" @click="goInMonth(item.name)">
+      <div v-for="item in state.monthsValue" :key="item" class="year_main_block__months_block--content" @click="goInMonth(item.name)">
       <Month :monthsValue="item"></Month>
       </div>
     </div>
@@ -12,30 +12,21 @@
 </template>
 
 <script setup lang="ts">
-import settingValue from '~/settingValue.json'
 import {useConfigCalendar} from "~/composables/states";
-import {type settingValueType, type monthsValueType} from '~/composables/types'
-import type {Ref} from "vue";
+import {onBeforeMount} from "vue";
 
+
+const {$valueYear} = useNuxtApp()
 const state = useConfigCalendar()
-const configJson: settingValueType = settingValue
-const monthsValue: Ref<monthsValueType | null> = ref(null)
-state.value.monthsValue = configJson.config.monthsValue
-state.value.dayWeak = configJson.config.dayWeak
-monthsValue.value = state.value.monthsValue
 
 function goInMonth(month: string){
   navigateTo(`/month-${month}`)
 }
 
+onBeforeMount(()=> {
+  $valueYear()
+})
 
-//  Monday
-//  Tuesday
-//  Wednesday
-//  Thursday
-//  Friday
-//  Saturday
-//  Sunday
 
 </script>
 

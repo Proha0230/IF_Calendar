@@ -3,7 +3,8 @@
       <div class="month_day_main__hours_tasks_block">
         <div class="month_day_main__hours_tasks_block--tasks_item" v-for="(item, index) in timeArrayTasks" :key="item">
           <p>{{item.time}}</p>
-          <IconNotes></IconNotes>
+          <component :is="input && item.time === neededInput ? closeNotes : newNotes" @click="input ? notesOpen(item.time,false) : notesOpen(item.time,true)"></component>
+          <input type="text" v-if="input && item.time === neededInput"/>
         </div>
       </div>
   </div>
@@ -11,11 +12,12 @@
 </template>
 
 <script setup lang="ts">
+import type {Ref} from "vue";
 
-// const time = (hour:number) => {
-//   let hour:number = 0;
-//   return hour++
-// }
+const newNotes = resolveComponent('IconNotes');
+const closeNotes = resolveComponent('IconCloseNotes')
+const input: Ref<boolean> = ref(false)
+const neededInput: Ref<null | string> = ref(null)
 const emptyArrayTasks:Array<Array<string | Object>> = Object.values(Array.from({length: 24}, ()=> [""]))
 const timeArrayTasks:Array<{ time:string, note:string }> = []
 
@@ -28,6 +30,11 @@ const timeArrayTasks:Array<{ time:string, note:string }> = []
     }
   timeArrayTasks.push(obj)
 })
+
+function notesOpen(itemTime: string,open:boolean) {
+  neededInput.value = itemTime
+  input.value = open
+}
 
 </script>
 
@@ -62,6 +69,10 @@ const timeArrayTasks:Array<{ time:string, note:string }> = []
       display: flex;
       align-items: center;
 
+
+      & input {
+        width: 100%;
+      }
     }
   }
 }

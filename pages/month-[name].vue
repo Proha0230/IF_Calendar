@@ -1,7 +1,7 @@
 <template>
   <div class="month_day_main">
     <div class="month_day_main__name_month">
-      <p>{{$route.params.name}}</p>
+      <p>{{route.params.name}}</p>
     </div>
     <div class="month_day_main__block">
       <div v-for="item in dayWeak" :key="item" class="month_day_main__block--day_name">
