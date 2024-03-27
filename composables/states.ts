@@ -14,7 +14,10 @@ export const useConfigCalendar = () => useState(() => ({
             addDay: ""
         }
     }),
-    year: 2024
+    year: 2024,
+    prevMonth: '',
+    nextMonth: ''
+
 }))
 
 //  Monday

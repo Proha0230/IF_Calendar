@@ -35,6 +35,11 @@ const allMonthsValue: Ref<Array<monthValueType>> = ref(Object.values(toRaw(state
 const monthValue: Ref<monthValueType> = ref(allMonthsValue.value.filter(item => item.name === route.params.name)[0])
 const dayWeak: Ref<Array<dayWeakType>> = ref(Object.values(toRaw(state.value.dayWeak)))
 
+allMonthsValue.value.forEach((item,index) => {
+  if(index > 0 && item.name === route.params.name) state.value.prevMonth = allMonthsValue.value[index - 1].name
+  if (index < 11 && item.name === route.params.name) state.value.nextMonth = allMonthsValue.value[index + 1].name
+})
+
 // здесь мы создаем взависимости от кол-ва дней массив с массивами - в которых содержится "true" строка - это кол-во
 // дней в месяце
 const dayInMonthArray: Array<Array<"false" | "true">> = Array.from({length: +monthValue.value.day}, ()=> ["true"])

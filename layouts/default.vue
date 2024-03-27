@@ -1,12 +1,18 @@
 <template>
   <div class="main_layout">
     <div class="main_layout__button_block">
-      <button class="main_layout__button_block--route" @click="goTo(true)" :class="route.params && route.params.name || route.fullPath.includes('/about')  ? '' : 'hidden'"><IconBack></IconBack></button>
+      <button class="main_layout__button_block--route" @click="goTo(true)" :class="rules('buttonBack')"><LazyIconBack></LazyIconBack></button>
 
-      <div class="main_layout__button_block--change_year" v-if="route.params && !route.params.name && !route.fullPath.includes('/about')">
-        <IconLeft @click="changeYearDecr" :class="state.year > 2023 ? '' : 'hidden'"></IconLeft>
+      <div class="main_layout__button_block--change_year" v-if="rules('changeYear')">
+        <LazyIconLeft @click="changeYearDecr" :class="rules('changeYearDecr')"></LazyIconLeft>
         <p>{{ state.year }} Year</p>
-        <IconRight @click="changeYearIncr" :class="state.year < 2025 ? '' : 'hidden'"></IconRight>
+        <LazyIconRight @click="changeYearIncr" :class="rules('changeYearIncr')"></LazyIconRight>
+      </div>
+
+      <div class="main_layout__button_block--change_year" v-if="rules('changeMonth')">
+        <LazyIconLeft @click="goToMonth(state.prevMonth)" :class="rules('hiddenPrevMonth')"></LazyIconLeft>
+        <p>{{ route.params.name }}</p>
+        <LazyIconRight @click="goToMonth(state.nextMonth)" :class="rules('hiddenNextMonth')"></LazyIconRight>
       </div>
 
       <button class="main_layout__button_block--about" @click="goTo(false)">About</button>
@@ -24,6 +30,19 @@ const route = useRoute();
 const state = useConfigCalendar();
 const {$valueYear} = useNuxtApp()
 
+function rules(value:string) {
+  if(value === 'changeYear') return route.params && !route.params.name && !route.fullPath.includes('/about')
+  if(value === 'changeYearDecr') return state.value.year > 2023 ? '' : 'hidden'
+  if(value === 'changeYearIncr') return state.value.year < 2025 ? '' : 'hidden'
+  if(value === 'changeMonth') return route.params && route.params.name && !route.params.day && !route.fullPath.includes('/about')
+  if(value === 'hiddenNextMonth') return state.value.nextMonth === '' || route.params.name === state.value.nextMonth ? 'hidden' : ''
+  if(value === 'hiddenPrevMonth') return state.value.prevMonth === '' || route.params.name === state.value.prevMonth ? 'hidden' : ''
+  if(value === 'buttonBack') return route.params && route.params.name || route.fullPath.includes('/about')  ? '' : 'hidden'
+}
+
+function goToMonth(value:string) {
+  if(value && route.params.name !== value) navigateTo(`/month-${value}`)
+}
 function changeYearDecr() {
   if(state.value.year > 2023) state.value.year = state.value.year - 1
   $valueYear()

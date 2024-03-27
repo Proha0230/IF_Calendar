@@ -2,9 +2,21 @@
 
 Написано на технологическом стэке:
 
-Nuxt 3
+* Nuxt 3
 
-TypeScript
+* TypeScript
 
-Sass(scss)
+* Sass(scss)
 
+Приложение конфигурируется по шаблонам которые хранятся в файлах:
+
+* valueFor2023.json
+* valueFor2024.json
+* valueFor2025.json
+
+
+Немного изменив их - вы сможете сделать календарь для любого года который вам будет нужен
+
+Hosting Firebase:
+
+https://if-calendar-204d3.web.app/
